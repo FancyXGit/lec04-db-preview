@@ -6,7 +6,7 @@
 
 <!-- 只写 GitHub 用户名，不要写学号或真实姓名 -->
 
-@your-github-username
+`your-github-username`
 
 ## 本地自测
 

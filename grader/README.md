@@ -73,3 +73,19 @@ python grader/grade.py --submission submissions/alice/hw01 --github-user alice
 - 脚本会重建 `MYSQL_DATABASE` 指定的数据库，不要指向有真实数据的库。
 - fork PR 的 `GITHUB_TOKEN` 是只读的，所以不自动发 PR 评论；结果写到 Actions 的 Summary。
 - 学生只能改 `submissions/<username>/hw01/`，越界由 workflow 的 Guard 拦截。
+- 公开仓库会公开 `submissions/` 下的内容；如果介意，使用私有仓库，或确保学生只写 GitHub 用户名。
+
+## GitHub 仓库设置
+
+1. **Settings → Actions → General**
+   - Fork pull request workflows：允许运行；
+   - 建议开启 **Require approval for first-time contributors**；
+   - Workflow permissions 选 **Read repository contents**。
+2. **Settings → Branches → main**
+   - 勾选 **Require a pull request before merging**；
+   - 勾选 **Require status checks to pass**，把 `autograde` 设为必需；
+   - 禁止直接 push 到 `main`。
+3. 学生统一用 **fork + Pull Request**，不要给所有人写权限。
+
+这样学生改不了评测脚本，老师只需要合并绿色 PR。
+
