@@ -87,7 +87,7 @@ submissions/<你的 GitHub 用户名>/hw01/
 
 ## 任务 3：`README.md`
 
-写上你的 GitHub 用户名，并回答三个问题：
+写上你的 GitHub 用户名，并回答三个问题。模板里已经留好了三个 `答：`，在每条 `答：` 的同一行后面写回答。
 
 1. `WHERE` 是干什么的？
 2. 如果 `UPDATE` 不写 `WHERE` 会发生什么？

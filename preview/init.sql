@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS members;
 
 CREATE TABLE members (
   id         BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  name       VARCHAR(32)     NOT NULL,
+  name       VARCHAR(64)     NOT NULL,
   class_name VARCHAR(32)     NOT NULL,
   major      VARCHAR(32)     NOT NULL,
   score      DECIMAL(5,2)    NOT NULL DEFAULT 0,

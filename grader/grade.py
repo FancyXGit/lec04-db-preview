@@ -359,6 +359,10 @@ def check_readme(submission_dir: Path, username: str):
     if len(lines) < 6:
         return False, "至少写 3 行回答，每行不要只写问题"
 
+    answers = [line for line in lines if line.startswith("答：")]
+    if len(answers) < 3 or any(len(line) <= 2 for line in answers):
+        return False, "请在三个“答：”后面分别写回答"
+
     return True, "已填写"
 
 
