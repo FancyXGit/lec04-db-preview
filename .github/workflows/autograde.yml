@@ -55,8 +55,8 @@ jobs:
           echo "Changed files:"
           echo "$changed"
 
-          if echo "$changed" | grep -vE '^submissions/[^/]+/hw01/' >/dev/null; then
-            echo "::error::只允许修改 submissions/<GitHub 用户名>/hw01/ 下的文件"
+          if echo "$changed" | grep -vE '^submissions/[^/]+/[^/]+$' >/dev/null; then
+            echo "::error::只允许修改 submissions/<GitHub 用户名>/ 下的文件"
             exit 1
           fi
 
@@ -75,13 +75,13 @@ jobs:
           fi
 
           for file in 01_dml.sql 02_q1_score.sql 03_q2_major.sql 04_q3_like.sql 05_q4_top3.sql README.md; do
-            if [ ! -f "submissions/$student/hw01/$file" ]; then
-              echo "::error::缺少文件 submissions/$student/hw01/$file"
+            if [ ! -f "submissions/$student/$file" ]; then
+              echo "::error::缺少文件 submissions/$student/$file"
               exit 1
             fi
           done
 
-          echo "submission=submissions/$student/hw01" >> "$GITHUB_OUTPUT"
+          echo "submission=submissions/$student" >> "$GITHUB_OUTPUT"
 
       - name: Set up Python
         uses: actions/setup-python@v5

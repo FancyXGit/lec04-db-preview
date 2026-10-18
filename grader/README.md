@@ -19,7 +19,7 @@ pip install pymysql cryptography
 | `MYSQL_USER` | `root` | 用户 |
 | `MYSQL_PASSWORD` | 空 | 密码 |
 | `MYSQL_DATABASE` | `hw01` | 评测数据库名，脚本会重建它 |
-| `SUBMISSION_DIR` | 无 | 例如 `submissions/alice/hw01` |
+| `SUBMISSION_DIR` | 无 | 例如 `submissions/alice` |
 | `GITHUB_USER` | 无 | PR 作者的 GitHub 用户名 |
 
 ## 本地运行
@@ -27,7 +27,7 @@ pip install pymysql cryptography
 ```bash
 MYSQL_USER=root MYSQL_PASSWORD=你的密码 \
 python grader/grade.py \
-  --submission submissions/alice/hw01 \
+  --submission submissions/alice \
   --github-user alice
 ```
 
@@ -36,7 +36,7 @@ Windows PowerShell：
 ```powershell
 $env:MYSQL_USER="root"
 $env:MYSQL_PASSWORD="你的密码"
-python grader/grade.py --submission submissions/alice/hw01 --github-user alice
+python grader/grade.py --submission submissions/alice --github-user alice
 ```
 
 ## 判分逻辑
@@ -72,7 +72,7 @@ python grader/grade.py --submission submissions/alice/hw01 --github-user alice
 
 - 脚本会重建 `MYSQL_DATABASE` 指定的数据库，不要指向有真实数据的库。
 - fork PR 的 `GITHUB_TOKEN` 是只读的，所以不自动发 PR 评论；结果写到 Actions 的 Summary。
-- 学生只能改 `submissions/<username>/hw01/`，越界由 workflow 的 Guard 拦截。
+- 学生只能改 `submissions/<username>/`，越界由 workflow 的 Guard 拦截。
 - 公开仓库会公开 `submissions/` 下的内容；如果介意，使用私有仓库，或确保学生只写 GitHub 用户名。
 
 ## GitHub 仓库设置

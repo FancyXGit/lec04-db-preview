@@ -2,15 +2,15 @@
 
 ## 提交信息
 
-- 分支：`hw01/<你的 GitHub 用户名>`
-- 目录：`submissions/<你的 GitHub 用户名>/hw01/`
+- 分支：`<你的 GitHub 用户名>`
+- 目录：`submissions/<你的 GitHub 用户名>/`
 - PR 标题：`[HW01] <你的 GitHub 用户名>`
 - 只写 GitHub 用户名，不要写学号或真实姓名。
 
 ## 文件
 
 ```text
-submissions/<你的 GitHub 用户名>/hw01/
+submissions/<你的 GitHub 用户名>/
 ├── 01_dml.sql
 ├── 02_q1_score.sql
 ├── 03_q2_major.sql
@@ -19,7 +19,7 @@ submissions/<你的 GitHub 用户名>/hw01/
 └── README.md
 ```
 
-把 `templates/` 里的文件复制过去，再把标了 `TODO` 的地方改掉。
+把 `templates/` 里的文件复制过去，按注释里的任务自己写完整 SQL。模板里只有题目说明，没有现成语句。
 
 ## 任务 1：`01_dml.sql`
 
@@ -54,7 +54,7 @@ submissions/<你的 GitHub 用户名>/hw01/
 
 ## 任务 2：四条查询
 
-每个文件只能有一条 `SELECT`，必须写 `ORDER BY`，不要用 `SELECT *`。
+每个文件只能有一条 `SELECT`，必须写 `ORDER BY`，不要用 `SELECT *`。模板里只写了要求，语句由你自己写。
 
 ### `02_q1_score.sql`
 
@@ -91,7 +91,7 @@ submissions/<你的 GitHub 用户名>/hw01/
 
 1. `WHERE` 是干什么的？
 2. 如果 `UPDATE` 不写 `WHERE` 会发生什么？
-3. 四条查询里，哪一条你改得最久，为什么？
+3. 四条查询里，哪一条你写得最久，为什么？
 
 ## 本地自测
 
@@ -109,10 +109,10 @@ USE preview;
 
 ### 测 DML
 
-把下面这些文件的内容复制到 `mysql>` 里执行，或者手动敲：
+按注释里的要求，把自己写好的 `01_dml.sql` 在 `mysql>` 里执行，或者逐条手动敲：
 
 1. `preview/init.sql`
-2. `submissions/<你的 GitHub 用户名>/hw01/01_dml.sql`
+2. `submissions/<你的 GitHub 用户名>/01_dml.sql`
 3. `SELECT COUNT(*) FROM members;`
 
 结果应该是 `8`。
@@ -136,7 +136,7 @@ q4: 林二 95.00, 周七 90.00, 吴六 88.00
 
 不要把这些结果写死到 SQL 里。评测看的是查询逻辑。
 
-> 命令行里练完，记得把最终语句保存到 `submissions/<你的 GitHub 用户名>/hw01/` 下的 `.sql` 文件。评测读文件，不读命令行历史。
+> 命令行里练完，记得把最终语句保存到 `submissions/<你的 GitHub 用户名>/` 下的 `.sql` 文件。评测读文件，不读命令行历史。
 
 ## 评分
 
@@ -151,9 +151,9 @@ q4: 林二 95.00, 周七 90.00, 吴六 88.00
 
 ## 提交
 
-1. 从 `upstream/main` 建分支 `hw01/<你的 GitHub 用户名>`；
-2. 只修改 `submissions/<你的 GitHub 用户名>/hw01/`；
+1. 从 `upstream/main` 建分支 `<你的 GitHub 用户名>`；
+2. 只修改 `submissions/<你的 GitHub 用户名>/`；
 3. 提交 PR，标题 `[HW01] <你的 GitHub 用户名>`；
 4. 等 `autograde` 变绿。
 
-详细步骤见 [预习文档](../../docs/00-预习.md#8-提交-pr)。
+详细步骤见 [预习文档](../docs/00-预习.md#8-提交-pr)。

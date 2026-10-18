@@ -244,7 +244,27 @@ def check_dml(conn, submission_dir: Path, username: str):
         ]
 
     try:
-        execute_script(conn, read_text(path))
+        raw = read_text(path)
+    except Exception as exc:  # noqa: BLE001
+        reason = f"读取失败：{exc}"
+        return [
+            ("DML 新增", False, reason),
+            ("DML 修改", False, reason),
+            ("DML 删除", False, reason),
+            ("DML 批量新增", False, reason),
+        ]
+
+    if not split_statements(raw):
+        reason = "文件里还没有 SQL 语句"
+        return [
+            ("DML 新增", False, reason),
+            ("DML 修改", False, reason),
+            ("DML 删除", False, reason),
+            ("DML 批量新增", False, reason),
+        ]
+
+    try:
+        execute_script(conn, raw)
     except Exception as exc:  # noqa: BLE001 - 需要把数据库错误展示给学生
         reason = f"执行失败：{exc}"
         return [
@@ -317,6 +337,8 @@ def check_query(conn, path: Path, spec: dict):
         return False, f"读取失败：{exc}"
 
     statements = split_statements(raw)
+    if not statements:
+        return False, "文件里还没有 SELECT"
     if len(statements) != 1:
         return False, f"只能有一条 SELECT，当前有 {len(statements)} 条语句"
 
@@ -380,8 +402,8 @@ def check_hygiene(submission_dir: Path, username: str):
     missing = [name for name in REQUIRED_FILES if not (submission_dir / name).exists()]
     if missing:
         return False, "缺少文件：" + ", ".join(missing)
-    if submission_dir.parent.name.lower() != username.lower():
-        return False, f"目录名应为 submissions/{username}/hw01/"
+    if submission_dir.name.lower() != username.lower():
+        return False, f"目录名应为 submissions/{username}/"
 
     return True, "6 个文件齐全"
 
