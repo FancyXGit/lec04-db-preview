@@ -10,7 +10,7 @@
 
 ## 快速开始
 
-1. 安装 MySQL 8.0 和 Navicat（安装步骤见预习文档）。
+1. 安装 MySQL 8.0（Navicat 可选，不装也能完成全部作业，见预习文档附录）。
 2. 打开 MySQL 命令行：`mysql -u root -p`。如果提示找不到，用开始菜单里的 MySQL 8.0 Command Line Client。
 3. 新建数据库 `preview`，在 `mysql>` 里执行 `preview/init.sql` 里的语句。
 4. 按 [预习文档](docs/00-预习.md) 在命令行里跑一遍增、改、删和查询。
