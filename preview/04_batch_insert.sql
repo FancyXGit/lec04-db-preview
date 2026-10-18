@@ -1,3 +1,4 @@
+-- 在 mysql> 下逐条执行；也可以整段复制。
 -- 批量新增
 INSERT INTO members (name, class_name, major, score) VALUES
 ('周九', '2023-3', '数学', 70),

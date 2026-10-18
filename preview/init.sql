@@ -1,3 +1,5 @@
+-- 在 mysql> 下逐条执行；也可以整段复制。
+-- 执行前先 USE preview;
 -- 预习练习表：每次重跑这个文件，数据会回到 5 行。
 DROP TABLE IF EXISTS members;
 

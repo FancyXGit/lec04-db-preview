@@ -10,10 +10,10 @@
 
 ## 快速开始
 
-1. 安装 MySQL 8.0 和 Navicat（没有 Navicat 就用 DBeaver 或 MySQL Workbench）。
-2. 新建数据库 `preview`。
-3. 执行 `preview/init.sql`。
-4. 按 [预习文档](docs/00-预习.md) 跑一遍增、改、删和查询。
+1. 安装 MySQL 8.0 和 Navicat（安装步骤见预习文档）。
+2. 打开 MySQL 命令行：`mysql -u root -p`。如果提示找不到，用开始菜单里的 MySQL 8.0 Command Line Client。
+3. 新建数据库 `preview`，在 `mysql>` 里执行 `preview/init.sql` 里的语句。
+4. 按 [预习文档](docs/00-预习.md) 在命令行里跑一遍增、改、删和查询。
 5. 把作业写到 `submissions/<你的 GitHub 用户名>/hw01/`。
 6. 向本仓库 `main` 分支提交 Pull Request。
 

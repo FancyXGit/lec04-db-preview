@@ -1,3 +1,4 @@
+-- 在 mysql> 下逐条执行；也可以整段复制。
 -- 先查
 SELECT id, name FROM members WHERE id = 4;
 

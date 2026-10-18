@@ -1,3 +1,4 @@
+-- 在 mysql> 下逐条执行；也可以整段复制。
 -- 先查，确认改的是谁
 SELECT id, name, score FROM members WHERE id = 1;
 

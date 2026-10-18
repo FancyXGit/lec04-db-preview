@@ -1,3 +1,4 @@
+-- 在 mysql> 下逐条执行；也可以整段复制。
 -- 新增一条
 INSERT INTO members (name, class_name, major, score)
 VALUES ('孙八', '2025-1', '计算机', 90);

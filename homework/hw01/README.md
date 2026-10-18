@@ -95,9 +95,21 @@ submissions/<你的 GitHub 用户名>/hw01/
 
 ## 本地自测
 
+在 MySQL 命令行里自测。先登录：
+
+```powershell
+mysql -u root -p
+```
+
+然后：
+
+```sql
+USE preview;
+```
+
 ### 测 DML
 
-在 Navicat 里按顺序执行：
+把下面这些文件的内容复制到 `mysql>` 里执行，或者手动敲：
 
 1. `preview/init.sql`
 2. `submissions/<你的 GitHub 用户名>/hw01/01_dml.sql`
@@ -123,6 +135,8 @@ q4: 林二 95.00, 周七 90.00, 吴六 88.00
 ```
 
 不要把这些结果写死到 SQL 里。评测看的是查询逻辑。
+
+> 命令行里练完，记得把最终语句保存到 `submissions/<你的 GitHub 用户名>/hw01/` 下的 `.sql` 文件。评测读文件，不读命令行历史。
 
 ## 评分
 

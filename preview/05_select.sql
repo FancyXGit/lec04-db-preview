@@ -1,3 +1,4 @@
+-- 在 mysql> 下逐条执行；也可以整段复制。
 -- 全部
 SELECT id, name, score FROM members;
 
