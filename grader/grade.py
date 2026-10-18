@@ -22,6 +22,8 @@ DB_NAME = os.getenv("MYSQL_DATABASE", "hw01")
 if not re.fullmatch(r"[A-Za-z0-9_]+", DB_NAME):
     raise SystemExit("MYSQL_DATABASE 只能包含字母、数字和下划线")
 
+PASS_SCORE = 80
+
 REQUIRED_FILES = [
     "01_dml.sql",
     "02_q1_score.sql",
@@ -472,7 +474,7 @@ def main() -> int:
         conn.close()
 
     score = sum(points for _, _, _, points in items)
-    passed = score >= 80
+    passed = score >= PASS_SCORE
     emit_report(items, score, passed, username)
     return 0 if passed else 1
 
