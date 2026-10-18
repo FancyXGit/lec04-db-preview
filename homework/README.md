@@ -4,7 +4,7 @@
 
 - 分支：`<你的 GitHub 用户名>`
 - 目录：`submissions/<你的 GitHub 用户名>/`
-- PR 标题：`[HW01] <你的 GitHub 用户名>`
+- PR 标题：`hw: <你的 GitHub 用户名>`
 - 只写 GitHub 用户名，不要写学号或真实姓名。
 
 ## 文件
@@ -153,7 +153,7 @@ q4: 林二 95.00, 周七 90.00, 吴六 88.00
 
 1. 从 `upstream/main` 建分支 `<你的 GitHub 用户名>`；
 2. 只修改 `submissions/<你的 GitHub 用户名>/`；
-3. 提交 PR，标题 `[HW01] <你的 GitHub 用户名>`；
+3. 提交 PR，标题 `hw: <你的 GitHub 用户名>`；
 4. 等 `autograde` 变绿。
 
 详细步骤见 [预习文档](../docs/00-预习.md#8-提交-pr)。

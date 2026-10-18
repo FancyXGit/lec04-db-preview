@@ -21,7 +21,7 @@
 
 - 分支名：`<你的 GitHub 用户名>`
 - 目录：`submissions/<你的 GitHub 用户名>/`
-- PR 标题：`[HW01] <你的 GitHub 用户名>`
+- PR 标题：`hw: <你的 GitHub 用户名>`
 - 只修改自己目录下的文件。
 
 PR 提交后会自动运行 `autograde`。绿色表示通过；红色点 `Details` 看原因。
