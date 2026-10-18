@@ -309,7 +309,11 @@ def check_query(conn, path: Path, spec: dict):
     if not path.exists():
         return False, "文件不存在"
 
-    raw = read_text(path)
+    try:
+        raw = read_text(path)
+    except Exception as exc:  # noqa: BLE001
+        return False, f"读取失败：{exc}"
+
     statements = split_statements(raw)
     if len(statements) != 1:
         return False, f"只能有一条 SELECT，当前有 {len(statements)} 条语句"
@@ -344,7 +348,11 @@ def check_readme(submission_dir: Path, username: str):
     if not path.exists():
         return False, "文件不存在"
 
-    text = read_text(path)
+    try:
+        text = read_text(path)
+    except Exception as exc:  # noqa: BLE001
+        return False, f"读取失败：{exc}"
+
     lower = text.lower()
     if "<your-github-username>" in lower:
         return False, "还有 <your-github-username> 占位符没有替换"
