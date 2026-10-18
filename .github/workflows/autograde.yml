@@ -1,0 +1,102 @@
+name: autograde
+
+on:
+  pull_request:
+    paths:
+      - "submissions/**"
+
+permissions:
+  contents: read
+
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ROOT_HOST: "%"
+          MYSQL_DATABASE: hw01
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -proot"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=30
+
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Check changed files
+        id: guard
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+        run: |
+          set -euo pipefail
+
+          git fetch origin "$BASE_REF"
+          base=$(git merge-base "origin/$BASE_REF" HEAD)
+          changed=$(git diff --name-only "$base" HEAD)
+
+          if [ -z "$changed" ]; then
+            echo "::error::PR 没有修改任何文件"
+            exit 1
+          fi
+
+          echo "Changed files:"
+          echo "$changed"
+
+          if echo "$changed" | grep -vE '^submissions/[^/]+/hw01/' >/dev/null; then
+            echo "::error::只允许修改 submissions/<GitHub 用户名>/hw01/ 下的文件"
+            exit 1
+          fi
+
+          students=$(echo "$changed" | cut -d/ -f2 | sort -u)
+          if [ "$(echo "$students" | wc -l)" -ne 1 ]; then
+            echo "::error::一次 PR 只能提交一个人的作业"
+            exit 1
+          fi
+
+          student="$students"
+          author_lower=$(echo "$PR_AUTHOR" | tr '[:upper:]' '[:lower:]')
+          student_lower=$(echo "$student" | tr '[:upper:]' '[:lower:]')
+          if [ "$student_lower" != "$author_lower" ]; then
+            echo "::error::目录名必须是 PR 作者的 GitHub 用户名：$PR_AUTHOR"
+            exit 1
+          fi
+
+          for file in 01_dml.sql 02_q1_score.sql 03_q2_major.sql 04_q3_like.sql 05_q4_top3.sql README.md; do
+            if [ ! -f "submissions/$student/hw01/$file" ]; then
+              echo "::error::缺少文件 submissions/$student/hw01/$file"
+              exit 1
+            fi
+          done
+
+          echo "submission=submissions/$student/hw01" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pymysql cryptography
+
+      - name: Grade
+        env:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_PORT: "3306"
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
+          MYSQL_DATABASE: hw01
+          GITHUB_USER: ${{ github.event.pull_request.user.login }}
+          SUBMISSION_DIR: ${{ steps.guard.outputs.submission }}
+        run: python grader/grade.py
